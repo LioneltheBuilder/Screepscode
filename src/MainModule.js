@@ -6,6 +6,20 @@
     
         // this is our main game loop all of our code to run our colony should be within here
     module.exports.loop = function () {
+
+        // a loop to see how much energy is available in this room
+        
+        for(var name in Game.rooms) {
+            console.log('Room "'+name+'" has '+Game.rooms[name].energyAvailable+' energy');
+        }
+
+        // if a creep does not exist we will delete it from memory
+        for(var name in Memory.creeps) {
+            if(!Game.creeps[name]) {
+                delete Memory.creeps[name];
+                console.log('Clearing non-existing creep memory:', name);
+            }
+        }
       
         // _ is a short cut for lodash, which applies a filter
         // to tell us how many harvesters we have
