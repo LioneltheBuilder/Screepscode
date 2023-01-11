@@ -7,13 +7,15 @@
         // this is our main game loop all of our code to run our colony should be within here
     module.exports.loop = function () {
       
-        // this tells us how many harvesters we have 
+        // _ is a short cut for lodash, which applies a filter
+        // to tell us how many harvesters we have
+        // then it reports to the console
         
         var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
         console.log('Harvesters: ' + harvesters.length);
         
         // if under 2 we will spawn and assign its role
-        // this same process is duplicated below with harvesters and upgraders
+       
           if(harvesters.length < 2) {
             var newName = 'Harvester' + Game.time;
             console.log('Spawning new harvester: ' + newName);
