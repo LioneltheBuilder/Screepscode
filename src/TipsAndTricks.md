@@ -33,3 +33,22 @@ Game.spawns['Spawn1'].room.controller.activateSafeMode();
             tower.attack(closestHostile);
         }
 
+
+// use this too see how many energy is available in the room
+
+
+    for(var name in Game.rooms) {
+        console.log('Room "'+name+'" has '+Game.rooms[name].energyAvailable+' energy');
+    }
+
+
+
+    // This one will spawn our Bigger Harvesters or builders
+
+    Game.spawns['Spawn1'].spawnCreep( [WORK,WORK,CARRY,CARRY,MOVE,MOVE,MOVE],
+    'HarvesterBig',
+    { memory: { role: 'harvester' } } );
+
+    Game.spawns['Spawn1'].spawnCreep( [WORK,WORK,CARRY,CARRY,MOVE,MOVE,MOVE],
+    'BigBuilder1',
+    { memory: { role: 'harvester' } } );
