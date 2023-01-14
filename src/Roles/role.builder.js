@@ -1,16 +1,17 @@
-var roleBuilder = {
+  // the function called run is contained in our roleBuilder object, and exported to the main module
+  var roleBuilder = {
 
     //when it first runs we get a refrence to our creep
     run: function(creep) {
     
-    // if our creep has no energy it will say harvest
+    // if creep is building but has no energy it will switch to harvest
    
     
    if(creep.memory.building && creep.store[RESOURCE_ENERGY] == 0) {
             creep.memory.building = false;
             creep.say('🔄 harvest');
    }
-    //if our creep has energy it should say build
+    //If creep is not building yet, but is full of energy it will switch to build
    if(!creep.memory.building && creep.store.getFreeCapacity() == 0) {
        creep.memory.building = true;
        creep.say('🚧 build');
