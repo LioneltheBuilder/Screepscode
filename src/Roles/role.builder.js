@@ -4,11 +4,11 @@
     //when it first runs we get a refrence to our creep
     run: function(creep) {
     
-    // if creep is building but has no energy it will switch to harvest
-   
-    
+    // if creep is trying to build but has no energy it will return false
+
    if(creep.memory.building && creep.store[RESOURCE_ENERGY] == 0) {
             creep.memory.building = false;
+            // creep then switches to harvest with visual que
             creep.say('🔄 harvest');
    }
     //If creep is not building yet, but is full of energy it will switch to build
