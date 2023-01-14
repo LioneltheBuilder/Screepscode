@@ -20,6 +20,23 @@
                 console.log('Clearing non-existing creep memory:', name);
             }
         }
+        
+        // Tower refrence, and then find hostiles and attack them
+        
+        var tower = Game.getObjectById('63c2386d42011dfb66a76616');
+        if(tower) {     
+            var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
+            if(closestHostile){
+                    tower.attack(closestHostile);
+            }
+            
+        }
+                // tower will find and repair closest roads
+        var closestDamagedRoad = tower.pos.findClosestByRange(FIND_STRUCTURES, {
+        filter: (road) => road.structureType == STRUCTURE_ROAD && road.hits < road.hitsMax });
+             if(closestDamagedRoad) {
+        tower.repair(closestDamagedRoad);
+             }
       
         // _ is a short cut for lodash, which applies a filter
         // to tell us how many harvesters we have
@@ -50,7 +67,7 @@
          var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
         console.log('upgraders: ' + upgraders.length);
     
-        if(upgraders.length < 5) {
+        if(upgraders.length < 1) {
             var newName = 'Upgrader' + Game.time;
             console.log('Spawning new upgrader: ' + newName);
             Game.spawns['Spawn1'].spawnCreep([WORK,WORK,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE], newName,
@@ -60,7 +77,7 @@
         var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
         console.log('builders: ' + builders.length);
     
-        if(builders.length < 2) {
+        if(builders.length < 5) {
             var newName = 'Builder' + Game.time;
             console.log('Spawning new builder: ' + newName);
             Game.spawns['Spawn1'].spawnCreep([WORK,WORK,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE], newName,
